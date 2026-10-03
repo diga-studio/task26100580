@@ -1,0 +1,56 @@
+"""ELF 常量定义（仅分析所需的子集）。"""
+
+# e_ident
+EI_CLASS = 4
+EI_DATA = 5
+ELFCLASS32 = 1
+ELFCLASS64 = 2
+ELFDATA2LSB = 1
+ELFDATA2MSB = 2
+
+# e_type
+ET_EXEC = 2
+ET_DYN = 3
+
+# program header
+PT_LOAD = 1
+PT_DYNAMIC = 2
+PT_GNU_STACK = 0x6474E551
+
+# p_flags
+PF_X = 0x1
+PF_W = 0x2
+PF_R = 0x4
+
+# dynamic tags
+DT_NULL = 0
+DT_PLTRELSZ = 2
+DT_PLTGOT = 3
+DT_HASH = 4
+DT_STRTAB = 5
+DT_SYMTAB = 6
+DT_RELA = 7
+DT_RELASZ = 8
+DT_RELAENT = 9
+DT_STRSZ = 10
+DT_SYMENT = 11
+DT_REL = 17
+DT_RELSZ = 18
+DT_RELENT = 19
+DT_PLTREL = 20
+DT_JMPREL = 23
+DT_FLAGS_1 = 0x6FFFFFFB
+
+DF_1_PIE = 0x08000000
+
+# 本次判定需要的单值动态标签（重复且取值冲突 => 报告无效）
+SINGLE_VALUE_TAGS = (
+    DT_STRTAB, DT_SYMTAB, DT_STRSZ, DT_SYMENT,
+    DT_REL, DT_RELSZ, DT_RELENT,
+    DT_RELA, DT_RELASZ, DT_RELAENT,
+    DT_JMPREL, DT_PLTRELSZ, DT_PLTREL,
+    DT_FLAGS_1,
+)
+
+# special section indices
+SHN_UNDEF = 0
